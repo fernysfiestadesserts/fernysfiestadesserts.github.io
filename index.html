@@ -45,12 +45,25 @@
 			</p>
 		</header>
 
-		<main>
+		<!-- <main>
 			<div class="hero-text">
 				<h2 class="fancy-font">Desserts - Just Because!</h2>
 				<a href="#order" class="btn btn-alt bold">Place An Order</a>		
 			</div>
+		</main> -->
+		<main class="hero">
+			
+			<!-- Slides get injected here by JS -->
+			<div class="hero-carousel" aria-live="polite"></div>
+
+			<!-- Keep your existing overlay text/button -->
+			<div class="hero-text">
+				<h2 class="fancy-font">Desserts - Just Because!</h2>
+				<a href="#order" class="btn btn-alt bold">Place An Order</a>
+			</div>
+			
 		</main>
+
 		<div class="wrapper">
 			<section class="menu" id="menu">
 				
@@ -191,17 +204,18 @@
 				<div class="review-container">
 	
 					<div class="review1">
-						<p>Hola Fernando! You most certainly outdid yourself!  The cake was a hit, for sure. With 12 people, we didn’t even finish the base. It was so rich and everything I had hoped for and more. Mil gracias!</p>
+						<p>Hola Fernando! You most certainly outdid yourself!  The cake was a hit, for sure. With 12 people, we didn't even finish the base. It was so rich and everything I had hoped for and more. Mil gracias!</p>
+						<h3>&mdash; Marilyn</h3>
 					</div>
 					
 					<div class="review2">
-						<p>Literally the best cupcakes I have ever had. Their presentation is amazing as well! I tried a variety of flavors and you can&apos;t go wrong with any of them.</p>
-						<h3>&mdash; Holly Wood</h3>
+						<p>Just wanted to let you know that this cake isssss amazingggg, the buttercream alone is a dream. Letting it sit out to room temp was great advice, it's moist with amazing texture and super refreshing with the raspberry and mint. It reminds me of ambrosia, a childhood favorite of mine.</p>
+						<h3>&mdash; Jasmine</h3>
 					</div>
 
 					<div class="review3">
-						<p>Ferny's Fiesta Desserts elevated our special day to an unforgettable experience.</p>
-						<h3>&mdash; Dinah Mite</h3>
+						<p>Omg Fernando this cake is soooooooo good</p>
+						<h3>&mdash; Nicole</h3>
 					</div>
 
 				</div>
@@ -245,7 +259,7 @@
 			</section> -->
 
 			<section class="order" id="order">
-				<h3 class="fancy-font" style="background-color:#903716; color:#FADFB2; padding:10px 20px; border-radius:8px;">Place An Order</h3>
+				<h3 class="fancy-font" style="background-color:#903716; color:#FADFB2; padding:10px 20px; border-radius:8px;">Contact Me</h3>
 				
 				<form action="https://formspree.io/f/myzbjdbl" method="POST">
 					<!-- <div class="invis">
@@ -265,8 +279,8 @@
 						</div>
 
 					</div>
-					<label for="message">Write us a message! :</label>
-					<textarea rows="6" name="message" id="message" placeholder="Type your message here..."></textarea>
+					<label for="message">What can we bake for your celebration?</label>
+					<textarea rows="6" name="message" id="message" placeholder="Describe your dessert idea — occasion, theme, flavors, or special requests!"></textarea>
 					
 					<input type="submit" value="SEND" class="btn" id="submit-btn">
 				</form>

@@ -1491,3 +1491,206 @@ footer {                             /* stop footer's own rule from shrinking it
   border-radius: 2px;
   opacity: 0.8;
 }
+
+/* === HERO CAROUSEL === */
+.hero {
+  position: relative;
+  width: 100%;
+  height: clamp(320px, 60vh, 640px);
+  overflow: hidden;
+  /* Neutralize old hero background/padding for this section */
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+.hero-carousel {
+  position: absolute;
+  inset: 0;
+}
+
+/* Each slide occupies the whole hero, cross-fading via opacity */
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 600ms ease;
+  will-change: opacity;
+}
+.hero-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+.hero-slide.is-active { opacity: 1; }
+
+/* Keep your existing hero text, but overlay it on the carousel */
+.hero-text {
+  position: relative;
+  z-index: 2;
+  width: min(800px, 90%);
+  margin: 0 auto;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+  color: var(--cream-color);
+  padding: 0 1rem;
+}
+
+/* Optional: subtle text shadow for better legibility on bright photos */
+.hero-text h2,
+.hero-text .btn {
+  text-shadow: 0 2px 8px rgba(0,0,0,0.35);
+}
+
+/* === Hero carousel controls === */
+.hero-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  width: 38px;
+  height: 38px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.35);
+  color: #FADFB2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 160ms ease, transform 160ms ease;
+}
+.hero-arrow:hover { background: rgba(0,0,0,0.5); transform: translateY(-50%) scale(1.05); }
+.hero-arrow:focus-visible { outline: 2px solid #FADFB2; outline-offset: 2px; }
+.hero-arrow--left  { left: 12px; }
+.hero-arrow--right { right: 12px; }
+
+/* smaller on very small phones */
+@media (max-width: 420px) {
+  .hero-arrow { width: 32px; height: 32px; }
+}
+
+/* optional: hide arrows if user prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .hero-arrow { display: none; }
+}
+
+/* Background-based slides: perfect, consistent cropping */
+.hero-slide {
+  position: absolute; inset: 0;
+  opacity: 0; transition: opacity 600ms ease;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.hero-slide.is-active { opacity: 1; }
+
+/* Base hero sizing stays the same */
+.hero { position: relative; width: 100%; height: clamp(360px, 60vh, 640px); overflow: hidden; }
+.hero-carousel { position: absolute; inset: 0; }
+.hero-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 600ms ease; }
+.hero-slide.is-active { opacity: 1; }
+
+/* Default: normal images fill the frame (center-cropped) */
+.hero-slide img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Smart-fit mode for extreme aspect ratios:
+   - Show the full image (contain)
+   - Place a blurred/dimmed clone as a background to fill edges nicely */
+.hero-slide.alt-fit::before {
+  content: "";
+  position: absolute; inset: 0;
+  background-image: var(--bg);
+  background-size: cover;
+  background-position: center;
+  filter: blur(12px) brightness(0.7);
+  transform: scale(1.1);  /* expand so blur doesn't show edges */
+}
+
+.hero-slide.alt-fit img {
+  object-fit: contain;         /* show entire image, no cropping */
+  background: transparent;     /* no letterbox bars thanks to ::before */
+  z-index: 1;                  /* sit above the blurred backdrop */
+}
+
+/* === HERO (base) ========================================================= */
+.hero {
+  position: relative;
+  width: 100%;
+  height: clamp(360px, 60vh, 640px);
+  overflow: hidden;
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+.hero-carousel { position: absolute; inset: 0; }
+
+/* Slides cross-fade via opacity */
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 600ms ease;
+}
+.hero-slide.is-active { opacity: 1; }
+
+/* Images fill the hero by default (center-crop) */
+.hero-slide img {
+  position: absolute; inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  transition: transform 300ms ease, opacity 600ms ease;
+  transform-origin: center center;   /* used by the JS boost */
+}
+
+/* === SMART-FIT (extreme aspect ratios) =================================== */
+/* When JS adds .alt-fit, show full image and create a blurred backdrop
+   using the same image (provided via --bg by JS) to avoid letterbox bars. */
+.hero-slide.alt-fit { position: relative; }
+.hero-slide.alt-fit::before {
+  content: "";
+  position: absolute; inset: 0;
+  background-image: var(--bg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(12px) brightness(0.72);
+  transform: scale(1.1);            /* avoid blur edges */
+  z-index: 0;
+}
+.hero-slide.alt-fit img {
+  object-fit: contain !important;    /* show entire image */
+  background: transparent;
+  z-index: 1;                        /* above the blurred backdrop */
+}
+
+/* === Accessibility niceties ============================================== */
+@media (prefers-reduced-motion: reduce) {
+  .hero-slide,
+  .hero-slide img { transition: none; }
+}
+
+/* Optional: ensure overlay text stays readable on busy photos */
+.hero-text h2,
+.hero-text .btn {
+  text-shadow: 0 2px 8px rgba(0,0,0,0.35);
+}
+
+.hero { position: relative; width: 100%; height: clamp(360px, 60vh, 640px); overflow: hidden; }
+.hero-carousel { position: absolute; inset: 0; }
+.hero-slide {
+  position: absolute; inset: 0;
+  opacity: 0; transition: opacity 600ms ease;
+  background-size: cover; background-position: center; background-repeat: no-repeat;
+  background-color: #903716; /* brand fallback so you never see pure white */
+}
+.hero-slide.is-active { opacity: 1; }
