@@ -370,3 +370,29 @@ function initHeroCarousel() {
   // 6) Go!
   start();
 }
+
+// 
+
+const modal = document.getElementById('imageModal');
+const modalImg = document.getElementById('modalImage');
+const closeBtn = document.querySelector('.modal-close');
+
+document.querySelectorAll('.clickable-image').forEach(img => {
+  img.addEventListener('click', () => {
+    modalImg.src = img.src;
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  });
+});
+
+closeBtn.addEventListener('click', () => {
+  modal.classList.remove('active');
+  document.body.style.overflow = '';
+});
+
+modal.addEventListener('click', e => {
+  if (e.target === modal) {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+});
