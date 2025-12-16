@@ -1696,14 +1696,22 @@ footer {                             /* stop footer's own rule from shrinking it
 .hero-slide.is-active { opacity: 1; }
 
 .seasonal-banner {
-  max-width: 86%;
-  margin: 24px auto 0;
-  padding: 0 0 12px;
+  max-width: 1100px;      /* desktop cap */
+  margin: 24px auto 8px;  /* spacing */
+  padding: 0 16px;        /* mobile gutter */
 }
 
 .seasonal-banner img {
-  display: block;
   width: 100%;
+  height: auto;           /* preserves aspect ratio */
+  max-height: 70vh;       /* prevents huge vertical images */
+  object-fit: contain;    /* no cropping */
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+@media (max-width: 600px) {
+  .seasonal-banner img {
+    max-height: 55vh;
+  }
 }
