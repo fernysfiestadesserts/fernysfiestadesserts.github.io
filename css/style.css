@@ -1694,3 +1694,16 @@ footer {                             /* stop footer's own rule from shrinking it
   background-color: #903716; /* brand fallback so you never see pure white */
 }
 .hero-slide.is-active { opacity: 1; }
+
+.seasonal-banner {
+  max-width: 86%;
+  margin: 24px auto 0;
+  padding: 0 0 12px;
+}
+
+.seasonal-banner img {
+  display: block;
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}

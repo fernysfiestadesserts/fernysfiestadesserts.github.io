@@ -25,7 +25,6 @@
     "images/carousel/carousel21.jpeg",
     "images/carousel/carousel22.jpeg",
     "images/carousel/carousel23.jpeg",
-    "images/carousel/carousel24.jpeg",
     "images/carousel/carousel1.jpeg" // repeat first if you want a seamless loop
   ];
   const HERO_INTERVAL_MS = 3000; // 3 seconds
